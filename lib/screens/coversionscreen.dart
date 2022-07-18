@@ -14,8 +14,14 @@ class ConversionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              DisplayUnitBox(),
-              DisplayUnitBox(),
+              DisplayUnitBox(
+                unitName: "Miles",
+                unitValue: "1200.00",
+              ),
+              DisplayUnitBox(
+                unitName: "KiloMeters",
+                unitValue: "1000.00",
+              ),
             ],
           ),
         ),
@@ -25,7 +31,10 @@ class ConversionScreen extends StatelessWidget {
 }
 
 class DisplayUnitBox extends StatelessWidget {
-  const DisplayUnitBox({Key? key}) : super(key: key);
+  String unitName = "";
+  String unitValue = "";
+
+  DisplayUnitBox({required this.unitName, required this.unitValue});
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +51,13 @@ class DisplayUnitBox extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Kilometers",
+              this.unitName,
               style: TextStyle(fontSize: 30.0),
             ),
             Container(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                "1200.00",
+                this.unitValue,
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.w900,
