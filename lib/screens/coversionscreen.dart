@@ -14,28 +14,48 @@ class ConversionScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                margin: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.blueAccent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Kilometers",
-                        style: TextStyle(fontSize: 30.0),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              DisplayUnitBox(),
+              DisplayUnitBox(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DisplayUnitBox extends StatelessWidget {
+  const DisplayUnitBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.redAccent,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(20.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              "Kilometers",
+              style: TextStyle(fontSize: 30.0),
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                "1200.00",
+                style: TextStyle(
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
