@@ -15,13 +15,9 @@ class ConversionScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DisplayUnitBox(
-                unitName: "Miles",
-                unitValue: "1200.00",
-              ),
-              DisplayUnitBox(
-                unitName: "KiloMeters",
-                unitValue: "1000.00",
-              ),
+                  baseUnitName: "KiloMeters",
+                  baseUnitValue: "0.0",
+                  convertedUnitName: "Miles"),
             ],
           ),
         ),
@@ -30,11 +26,24 @@ class ConversionScreen extends StatelessWidget {
   }
 }
 
-class DisplayUnitBox extends StatelessWidget {
-  String unitName = "";
-  String unitValue = "";
+class DisplayUnitBox extends StatefulWidget {
+  String baseUnitName = "";
+  String baseUnitValue = "";
 
-  DisplayUnitBox({required this.unitName, required this.unitValue});
+  String convertedUnitName = "";
+  String convertedUnitValue = "";
+
+  DisplayUnitBox(
+      {required this.baseUnitName,
+      required this.baseUnitValue,
+      required this.convertedUnitName});
+
+  @override
+  State<DisplayUnitBox> createState() => _DisplayUnitBoxState();
+}
+
+class _DisplayUnitBoxState extends State<DisplayUnitBox> {
+  double _currentSliderValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +60,31 @@ class DisplayUnitBox extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              this.unitName,
+              this.widget.baseUnitName,
               style: TextStyle(fontSize: 30.0),
             ),
             Container(
               padding: EdgeInsets.all(20.0),
               child: Text(
-                this.unitValue,
+                this.widget.baseUnitValue,
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.w900,
                 ),
               ),
             ),
+            Slider(
+                value: _currentSliderValue,
+                min: 0,
+                max: 100,
+                divisions: 5,
+                label: _currentSliderValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                    widget.baseUnitValue = value.toStringAsFixed(2);
+                  });
+                })
           ],
         ),
       ),
