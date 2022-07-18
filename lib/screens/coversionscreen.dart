@@ -12,20 +12,24 @@ class ConversionScreen extends StatelessWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
                 margin: EdgeInsets.all(20.0),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.blueAccent,
-                    width: 1,
-                  ),
-                ),
+                    border: Border.all(
+                      color: Colors.blueAccent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Text("Kilometers"),
+                      Text(
+                        "Kilometers",
+                        style: TextStyle(fontSize: 30.0),
+                      ),
                     ],
                   ),
                 ),
