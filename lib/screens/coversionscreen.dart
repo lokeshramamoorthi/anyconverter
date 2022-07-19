@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ConversionScreen extends StatelessWidget {
+  static final String routeName = "/ConversionScreen";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

@@ -1,3 +1,4 @@
+import 'package:anyconverter/screens/coversionscreen.dart';
 import 'package:anyconverter/screens/unitselector.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: UnitSelectorScreen(),
+      routes: {
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        UnitSelectorScreen.routeName: (context) => UnitSelectorScreen(),
+        ConversionScreen.routeName: (context) => ConversionScreen(),
+      },
     );
   }
 }
