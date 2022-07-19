@@ -1,3 +1,4 @@
+import 'package:anyconverter/screens/coversionscreen.dart';
 import 'package:flutter/material.dart';
 
 class UnitSelectorScreen extends StatelessWidget {
@@ -39,7 +40,9 @@ class UnitSelectorScreen extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(20.0)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, ConversionScreen.routeName);
+                },
                 child: Text(
                   "Celcius to Fahrenheit",
                   style: TextStyle(fontSize: 30.0),
