@@ -15,9 +15,11 @@ class ConversionScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DisplayUnitBox(
-                  baseUnitName: "Miles",
-                  baseUnitValue: "0.0",
-                  convertedUnitName: "Kilometers"),
+                baseUnitName: "Celcius",
+                baseUnitValue: "0.0",
+                convertedUnitName: "Fahrenheit",
+                conversionFunction: (value) => ((value * (9 / 5) + 32)),
+              ),
             ],
           ),
         ),
@@ -33,10 +35,13 @@ class DisplayUnitBox extends StatefulWidget {
   String convertedUnitName = "";
   String convertedUnitValue = "";
 
+  Function conversionFunction;
+
   DisplayUnitBox(
       {required this.baseUnitName,
       required this.baseUnitValue,
-      required this.convertedUnitName});
+      required this.convertedUnitName,
+      required this.conversionFunction});
 
   @override
   State<DisplayUnitBox> createState() => _DisplayUnitBoxState();
@@ -87,7 +92,7 @@ class _DisplayUnitBoxState extends State<DisplayUnitBox> {
                         _currentSliderValue = value;
                         widget.baseUnitValue = value.toStringAsFixed(2);
                         widget.convertedUnitValue =
-                            (value * 1.609).toStringAsFixed(2);
+                            widget.conversionFunction(value).toStringAsFixed(2);
                       });
                     })
               ],
