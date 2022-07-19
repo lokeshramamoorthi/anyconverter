@@ -41,14 +41,77 @@ class UnitSelectorScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, ConversionScreen.routeName);
+                  Navigator.pushNamed(
+                    context,
+                    ConversionScreen.routeName,
+                    arguments: DisplayUnitBox(
+                      baseUnitName: "Celcius",
+                      baseUnitValue: "0.0",
+                      convertedUnitName: "Fahrenheit",
+                      conversionFunction: (value) => ((value * (9 / 5) + 32)),
+                    ),
+                  );
                 },
                 child: Text(
                   "Celcius to Fahrenheit",
                   style: TextStyle(fontSize: 30.0),
                 ),
               ),
-            )
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.brown,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    ConversionScreen.routeName,
+                    arguments: DisplayUnitBox(
+                      baseUnitName: "Kilometers",
+                      baseUnitValue: "0.0",
+                      convertedUnitName: "Miles",
+                      conversionFunction: (value) => ((value * 1.609)),
+                    ),
+                  );
+                },
+                child: Text(
+                  "Miles to Kms",
+                  style: TextStyle(fontSize: 30.0),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.brown,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    ConversionScreen.routeName,
+                    arguments: DisplayUnitBox(
+                      baseUnitName: "Liters",
+                      baseUnitValue: "0.0",
+                      convertedUnitName: "Gallons",
+                      conversionFunction: (value) => ((value * 0.4)),
+                    ),
+                  );
+                },
+                child: Text(
+                  "Celcius to Fahrenheit",
+                  style: TextStyle(fontSize: 30.0),
+                ),
+              ),
+            ),
           ],
         ),
       ),

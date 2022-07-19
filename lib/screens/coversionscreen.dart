@@ -5,24 +5,19 @@ class ConversionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as DisplayUnitBox;
+
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Unit Converter - Miles to Kms"),
+        title: Text("Unit Converter"),
       ),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              DisplayUnitBox(
-                baseUnitName: "Celcius",
-                baseUnitValue: "0.0",
-                convertedUnitName: "Fahrenheit",
-                conversionFunction: (value) => ((value * (9 / 5) + 32)),
-              ),
-            ],
+            children: [args],
           ),
         ),
       ),
