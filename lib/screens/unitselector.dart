@@ -28,7 +28,7 @@ class UnitSelectorScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
@@ -107,7 +107,61 @@ class UnitSelectorScreen extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  "Celcius to Fahrenheit",
+                  "Liters to Gallons",
+                  style: TextStyle(fontSize: 30.0),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.brown,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    ConversionScreen.routeName,
+                    arguments: DisplayUnitBox(
+                      baseUnitName: "Ounces",
+                      baseUnitValue: "0.0",
+                      convertedUnitName: "Milliliters",
+                      conversionFunction: (value) => ((value * 0.3)),
+                    ),
+                  );
+                },
+                child: Text(
+                  "Ounces to Milliliters",
+                  style: TextStyle(fontSize: 30.0),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.brown,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    ConversionScreen.routeName,
+                    arguments: DisplayUnitBox(
+                      baseUnitName: "Feet",
+                      baseUnitValue: "0.0",
+                      convertedUnitName: "Meters",
+                      conversionFunction: (value) => ((value * 0.3)),
+                    ),
+                  );
+                },
+                child: Text(
+                  "Ft to Meters",
                   style: TextStyle(fontSize: 30.0),
                 ),
               ),
