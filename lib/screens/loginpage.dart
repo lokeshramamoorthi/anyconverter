@@ -10,6 +10,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +35,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: "Enter the username",
+                ),
+                controller: userNameController,
+                textCapitalization: TextCapitalization.none,
+              )
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.forward),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
+                title: Text("Welcome Message"),
+                content: Text(userNameController.text),
+              );
+            },
+          );
+        },
       ),
     );
   }
