@@ -1,3 +1,4 @@
+import 'package:anyconverter/info/unitconversioninfo.dart';
 import 'package:flutter/material.dart';
 
 class ConversionScreen extends StatelessWidget {
@@ -26,19 +27,9 @@ class ConversionScreen extends StatelessWidget {
 }
 
 class DisplayUnitBox extends StatefulWidget {
-  String baseUnitName = "";
-  String baseUnitValue = "";
+  UnitConversionInfo unitConversionInfo;
 
-  String convertedUnitName = "";
-  String convertedUnitValue = "";
-
-  Function conversionFunction;
-
-  DisplayUnitBox(
-      {required this.baseUnitName,
-      required this.baseUnitValue,
-      required this.convertedUnitName,
-      required this.conversionFunction});
+  DisplayUnitBox({required this.unitConversionInfo});
 
   @override
   State<DisplayUnitBox> createState() => _DisplayUnitBoxState();
@@ -65,13 +56,13 @@ class _DisplayUnitBoxState extends State<DisplayUnitBox> {
             child: Column(
               children: [
                 Text(
-                  this.widget.baseUnitName,
+                  this.widget.unitConversionInfo.baseUnitName,
                   style: TextStyle(fontSize: 30.0),
                 ),
                 Container(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
-                    this.widget.baseUnitValue,
+                    this.widget.unitConversionInfo.baseUnitValue,
                     style: TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.w900,
@@ -87,9 +78,12 @@ class _DisplayUnitBoxState extends State<DisplayUnitBox> {
                     onChanged: (double value) {
                       setState(() {
                         _currentSliderValue = value;
-                        widget.baseUnitValue = value.toStringAsFixed(2);
-                        widget.convertedUnitValue =
-                            widget.conversionFunction(value).toStringAsFixed(2);
+                        widget.unitConversionInfo.baseUnitValue =
+                            value.toStringAsFixed(2);
+                        widget.unitConversionInfo.convertedUnitValue = widget
+                            .unitConversionInfo
+                            .conversionFunction(value)
+                            .toStringAsFixed(2);
                       });
                     })
               ],
@@ -109,13 +103,13 @@ class _DisplayUnitBoxState extends State<DisplayUnitBox> {
             child: Column(
               children: [
                 Text(
-                  this.widget.convertedUnitName,
+                  this.widget.unitConversionInfo.convertedUnitName,
                   style: TextStyle(fontSize: 30.0),
                 ),
                 Container(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
-                    this.widget.convertedUnitValue,
+                    this.widget.unitConversionInfo.convertedUnitValue,
                     style: TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.w900,

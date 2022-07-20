@@ -1,4 +1,5 @@
 import 'package:anyconverter/data/userdata.dart';
+import 'package:anyconverter/screens/unitselector.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -70,6 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
               passwordController.text.isNotEmpty) {
             String message = "";
 
+            bool validUser = false;
+
             print(userNameController.text +
                 "   password is  " +
                 passwordController.text);
@@ -80,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ?.compareTo(passwordController.text) ==
                 0) {
               message = "Welcome to the app!!";
+              validUser = true;
             } else
               message = "Incorrect Password";
 
@@ -94,10 +98,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     content: Text(userNameController.text),
                     actions: [
                       TextButton(
-                          child: Text("Ok"),
-                          onPressed: () {
+                        child: Text("Cancel"),
+                        onPressed: () {
+                          if (validUser) Navigator.pop(context);
+                        },
+                      ),
+                      TextButton(
+                        child: Text("Ok"),
+                        onPressed: () {
+                          if (validUser)
+                            Navigator.pushNamed(
+                                context, UnitSelectorScreen.routeName,
+                                arguments: userNameController.text);
+                          else
                             Navigator.pop(context);
-                          })
+                        },
+                      )
                     ]);
               },
             );

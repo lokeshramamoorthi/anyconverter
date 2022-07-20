@@ -9,5 +9,6 @@ class UserData {
     userData.putIfAbsent("Jenny", () => "Jenny123");
     userData.putIfAbsent("Janet", () => "Janet123");
     userData.putIfAbsent("Jonam", () => "Jonam123");
+    userData.putIfAbsent("Tong", () => "Tong5555");
   }
 }
