@@ -226,7 +226,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         backgroundColor: Colors.red,
                                         content:
                                             Text("No input provided !!!")));
-                              ;
                             },
                           )
                         ],
