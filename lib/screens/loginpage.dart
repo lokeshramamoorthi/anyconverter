@@ -59,93 +59,192 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: passwordController,
                   textCapitalization: TextCapitalization.none,
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Sign In "),
+                      Icon(Icons.forward),
+                    ],
+                  ),
+                  onPressed: () {
+                    if (userNameController.text.isNotEmpty &&
+                        passwordController.text.isNotEmpty) {
+                      String message = "";
+
+                      bool validUser = false;
+
+                      print(userNameController.text +
+                          "   password is  " +
+                          passwordController.text);
+
+                      if (!UserData.userCredentials
+                          .containsKey(userNameController.text)) {
+                        message = "User not found !!!";
+                      } else if (UserData
+                              .userCredentials[userNameController.text]
+                              ?.compareTo(passwordController.text) ==
+                          0) {
+                        message = "Welcome to the app!!";
+                        validUser = true;
+                      } else
+                        message = "Incorrect Password";
+
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                              // Retrieve the text the that user has entered by using the
+                              // TextEditingController.
+
+                              title: Text(message),
+                              content: Text(userNameController.text),
+                              actions: [
+                                TextButton(
+                                  child: Text("Cancel"),
+                                  onPressed: () {
+                                    if (validUser) Navigator.pop(context);
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text("Ok"),
+                                  onPressed: () {
+                                    if (validUser)
+                                      Navigator.pushNamed(
+                                          context, UnitSelectorScreen.routeName,
+                                          arguments: userNameController.text);
+                                    else
+                                      Navigator.pop(context);
+                                  },
+                                )
+                              ]);
+                        },
+                      );
+                    } else {
+                      String message = "";
+                      if (userNameController.text.isEmpty &&
+                          passwordController.text.isEmpty)
+                        message =
+                            "No input provided for username and password!!";
+                      else if (userNameController.text.isEmpty)
+                        message = "User name not found or Empty!!";
+                      else
+                        message = "Password not found or Empty!!";
+
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            // Retrieve the text the that user has entered by using the
+                            // TextEditingController.
+
+                            title: Text(message),
+                            actions: [
+                              TextButton(
+                                child: Text("Ok"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              )
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  final registerNameController = TextEditingController();
+                  final registerPasswordController = TextEditingController();
+
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        // Retrieve the text the that user has entered by using the
+                        // TextEditingController.
+
+                        actionsAlignment: MainAxisAlignment.center,
+                        title: Text("Register New User"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Input your name and password"),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: "Preferred username",
+                                ),
+                                controller: registerNameController,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextField(
+                                obscureText: true,
+                                obscuringCharacter: "\$",
+                                decoration: InputDecoration(
+                                  hintText: "Preferred Password",
+                                ),
+                                controller: registerPasswordController,
+                              ),
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text("Cancel"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          TextButton(
+                            child: Text("Add"),
+                            onPressed: () {
+                              if (registerNameController.text.isNotEmpty &&
+                                  registerPasswordController.text.isNotEmpty) {
+                                UserData.userCredentials.putIfAbsent(
+                                    registerNameController.text,
+                                    () => registerPasswordController.text);
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        backgroundColor: Colors.green,
+                                        content:
+                                            Text("User added successfully!!")));
+                                Navigator.pop(context);
+                              } else
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        backgroundColor: Colors.red,
+                                        content:
+                                            Text("No input provided !!!")));
+                              ;
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Register"),
+                    Icon(Icons.add),
+                  ],
+                ),
               )
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.forward),
-        onPressed: () {
-          if (userNameController.text.isNotEmpty &&
-              passwordController.text.isNotEmpty) {
-            String message = "";
-
-            bool validUser = false;
-
-            print(userNameController.text +
-                "   password is  " +
-                passwordController.text);
-
-            if (!UserData.userData.containsKey(userNameController.text)) {
-              message = "User not found !!!";
-            } else if (UserData.userData[userNameController.text]
-                    ?.compareTo(passwordController.text) ==
-                0) {
-              message = "Welcome to the app!!";
-              validUser = true;
-            } else
-              message = "Incorrect Password";
-
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                    // Retrieve the text the that user has entered by using the
-                    // TextEditingController.
-
-                    title: Text(message),
-                    content: Text(userNameController.text),
-                    actions: [
-                      TextButton(
-                        child: Text("Cancel"),
-                        onPressed: () {
-                          if (validUser) Navigator.pop(context);
-                        },
-                      ),
-                      TextButton(
-                        child: Text("Ok"),
-                        onPressed: () {
-                          if (validUser)
-                            Navigator.pushNamed(
-                                context, UnitSelectorScreen.routeName,
-                                arguments: userNameController.text);
-                          else
-                            Navigator.pop(context);
-                        },
-                      )
-                    ]);
-              },
-            );
-          } else {
-            String message = "";
-            if (userNameController.text.isEmpty &&
-                passwordController.text.isEmpty)
-              message = "No input provided for username and password!!";
-            else if (userNameController.text.isEmpty)
-              message = "User name not found or Empty!!";
-            else
-              message = "Password not found or Empty!!";
-
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                    // Retrieve the text the that user has entered by using the
-                    // TextEditingController.
-
-                    title: Text(message),
-                    actions: [
-                      TextButton(
-                          child: Text("Ok"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          })
-                    ]);
-              },
-            );
-          }
-        },
       ),
     );
   }

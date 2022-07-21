@@ -109,7 +109,9 @@ class _DisplayUnitBoxState extends State<DisplayUnitBox> {
                 Container(
                   padding: EdgeInsets.all(20.0),
                   child: Text(
-                    this.widget.unitConversionInfo.convertedUnitValue,
+                    (this.widget.unitConversionInfo.convertedUnitValue.isEmpty)
+                        ? "-"
+                        : this.widget.unitConversionInfo.convertedUnitValue,
                     style: TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.w900,

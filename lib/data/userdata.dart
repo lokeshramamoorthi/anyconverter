@@ -1,14 +1,14 @@
 import 'dart:collection';
 
 class UserData {
-  static HashMap<String, String> userData = HashMap<String, String>();
+  static HashMap<String, String> userCredentials = HashMap<String, String>();
 
   static init() {
-    userData.putIfAbsent("Jane", () => "Jane123");
-    userData.putIfAbsent("John", () => "John123");
-    userData.putIfAbsent("Jenny", () => "Jenny123");
-    userData.putIfAbsent("Janet", () => "Janet123");
-    userData.putIfAbsent("Jonam", () => "Jonam123");
-    userData.putIfAbsent("Tong", () => "Tong5555");
+    userCredentials.putIfAbsent("Jane", () => "Jane123");
+    userCredentials.putIfAbsent("John", () => "John123");
+    userCredentials.putIfAbsent("Jenny", () => "Jenny123");
+    userCredentials.putIfAbsent("Janet", () => "Janet123");
+    userCredentials.putIfAbsent("Jonam", () => "Jonam123");
+    userCredentials.putIfAbsent("Tong", () => "Tong5555");
   }
 }

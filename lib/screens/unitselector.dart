@@ -39,6 +39,12 @@ class UnitSelectorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UnitsList.UnitInfoList.add(UnitConversionInfo(
+        baseUnitValue: "0.0",
+        baseUnitName: "Ounces",
+        convertedUnitName: "Milliliters",
+        conversionFunction: (value) => ((value * 30))));
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Select the unit to convert"),
