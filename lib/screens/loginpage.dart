@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               .userCredentials[userNameController.text]
                               ?.compareTo(passwordController.text) ==
                           0) {
-                        message = "Welcome to the app!!";
+                        message = "Welcome to the app !!";
                         validUser = true;
                       } else
                         message = " Incorrect Password!!";
