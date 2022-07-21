@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       bool validUser = false;
 
                       print(userNameController.text +
-                          "   password is  " +
+                          "  password is  " +
                           passwordController.text);
 
                       if (!UserData.userCredentials
